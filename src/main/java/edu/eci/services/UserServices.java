@@ -19,6 +19,8 @@ public class UserServices implements IUserServices{
 
     @Override
     public List<User> list() {
+    	User u=new User("italo", new UUID(3, 7));
+    	userRepository.save(u);
         return userRepository.findAll();
     }
 
@@ -34,8 +36,7 @@ public class UserServices implements IUserServices{
     }
 
     @Override
-    public User get(UUID id) {
-    	
+    public User get(UUID id) {    	
         return userRepository.find(id);
     }
 

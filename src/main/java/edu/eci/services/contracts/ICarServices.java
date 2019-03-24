@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
-
 import edu.eci.models.Car;
 
 
@@ -12,9 +11,8 @@ import edu.eci.models.Car;
 public interface ICarServices {
 	List<Car> list();
     Car create(Car car);
-    Car get(String licencePlate);
+    Car get(UUID licencePlate);
 	Car updateCar(Car car);
-	Car delete(String licencePlate);
-	 
+	Car delete(UUID licencePlate);	 
 	 
 }
