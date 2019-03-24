@@ -1,6 +1,10 @@
 package edu.eci.controllers;
 
 import edu.eci.models.Car;
+import edu.eci.persistences.repositories.IUserRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +17,10 @@ import java.util.UUID;
 @RequestMapping("/cars")
 public class CarController {
 
+	 @Autowired
+	    @Qualifier("UserMemoryRepository")
+	    private IUserRepository userRepository;
+	
     @ResponseBody
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<?> getCar(){
