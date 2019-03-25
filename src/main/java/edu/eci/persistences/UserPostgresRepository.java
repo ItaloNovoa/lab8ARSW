@@ -23,9 +23,10 @@ import java.util.UUID;
 @Qualifier("UserPostgresRepository")
 public class UserPostgresRepository implements IUserRepository {
 
-    private String dbUrl = null;
+    private String dbUrl = System.getenv().get("JDBC_DATABASE_URL");
+    
 
-    @Autowired
+    @Autowired    
     private DataSource dataSource;
 
     @Override
@@ -34,7 +35,8 @@ public class UserPostgresRepository implements IUserRepository {
     }
 
     @Override
-    public List<User> findAll() {
+    public List<User> findAll() { 
+    	System.out.println(dbUrl);
         String query = "SELECT * FROM users";
         List<User> users=new ArrayList<>();
 
