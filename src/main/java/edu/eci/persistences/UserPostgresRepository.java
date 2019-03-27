@@ -23,8 +23,8 @@ import java.util.UUID;
 @Qualifier("UserPostgresRepository")
 public class UserPostgresRepository implements IUserRepository {
 
-    private String dbUrl = System.getenv().get("JDBC_DATABASE_URL");
-    
+	 String dbUrl = "jdbc:postgresql://ec2-75-101-131-79.compute-1.amazonaws.com:5432/d1p0sj27t0c1kt?user=nacuxovudkvbue&password=865918416e2cbf7e629f43a812772fd1d979859e5fc743943b35e67bb1e177ea&sslmode=require";
+
 
     @Autowired    
     private DataSource dataSource;
@@ -36,7 +36,7 @@ public class UserPostgresRepository implements IUserRepository {
 
     @Override
     public List<User> findAll() { 
-    	System.out.println(dbUrl);
+    	System.out.println(dbUrl+" dd");
         String query = "SELECT * FROM users";
         List<User> users=new ArrayList<>();
 
