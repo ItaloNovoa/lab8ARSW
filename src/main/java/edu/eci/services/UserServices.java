@@ -19,8 +19,8 @@ public class UserServices implements IUserServices{
 
     @Override
     public List<User> list() {
-    	User u=new User("italo", new UUID(3, 7));
-    	userRepository.save(u);
+    	//User u=new User("italo", new UUID(3, 7));
+    	//userRepository.save(u);
         return userRepository.findAll();
     }
 
@@ -47,14 +47,16 @@ public class UserServices implements IUserServices{
     
 
     @Override
-	public User updateUser(User user) {
+	public User updateUser(User user) {    	
 		if(null == user.getId())
             throw new RuntimeException("Id invalid");
-        else if(userRepository.find(user.getId()) == null)
-        	userRepository.save(user);            
-        else {
+        else if(userRepository.find(user.getId()) == null) {
+        	System.out.println("entra 2");
+        	userRepository.save(user);			
+        }else {
         	User us1=userRepository.find(user.getId());
         	us1.setName(user.getName());
+        	System.out.println("si hace update");
         	userRepository.update(us1);
         	return us1;	
         }

@@ -14,13 +14,13 @@ import edu.eci.services.contracts.ICarServices;
 public class CarServices implements ICarServices {
 
 	@Autowired
-	@Qualifier("CarMemoryRepository")
+	@Qualifier("CarPostgresRepository")
 	private ICarRepository carRepository;
 
 	@Override
 	public List<Car> list() {
-		Car c=new Car(new UUID(1, 5), "mercedes");
-		carRepository.save(c);
+		//Car c=new Car(new UUID(1, 5), "mercedes");
+		//carRepository.save(c);
 		return carRepository.findAll();
 	}
 
@@ -46,13 +46,14 @@ public class CarServices implements ICarServices {
 		if(null ==car.getLicencePlate())
             throw new RuntimeException("LicencePlate invalid");
         else if(carRepository.find(car.getLicencePlate()) == null)
-        	throw new RuntimeException("en este update si no existe la Key no se inserta el objeto");            
+        	carRepository.save(car);			 
         else {
         	Car car1=carRepository.find(car.getLicencePlate());
         	car1.setBrand(car.getBrand());
         	carRepository.update(car1);
         	return car1;	
         }
+		return car;
 	}
 
 	@Override

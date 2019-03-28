@@ -31,12 +31,22 @@ public class UserPostgresRepository implements IUserRepository {
 
     @Override
     public User getUserByUserName(String userName) {
-        return null;
+        String query = "SELECT * FROM users where name='"+userName+"';";
+        try(Connection connection = dataSource.getConnection()){
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            User user = new User();
+            user.setName(rs.getString("name"));
+            user.setId(UUID.fromString(rs.getString("id")));           
+            return user;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public List<User> findAll() { 
-    	System.out.println(dbUrl+" dd");
         String query = "SELECT * FROM users";
         List<User> users=new ArrayList<>();
 
@@ -58,22 +68,59 @@ public class UserPostgresRepository implements IUserRepository {
 
     @Override
     public User find(UUID id) {
-        return null;
+    	String query = "SELECT * FROM users where id='"+id+"';";
+        try(Connection connection = dataSource.getConnection()){
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            User user = new User();
+            user.setName(rs.getString("name"));
+            user.setId(UUID.fromString(rs.getString("id")));           
+            return user;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public UUID save(User entity) {
-        return null;
+    	 String query = "insert into users(name,id) values ('"+entity.getName()+"','"+entity.getId()+"');";
+         System.out.println(query);
+         try(Connection connection = dataSource.getConnection()){
+             Statement stmt = connection.createStatement();
+             stmt.execute(query);
+             return entity.getId();
+         }catch (Exception e){
+             System.out.println(e.getMessage());
+             throw new RuntimeException(e);
+         }
     }
+    
 
     @Override
-    public void update(User entity) {
+    public void update(User entity) {    	
+    	 String query = "update users SET name='"+entity.getName()+"' Where id='"+entity.getId()+"';";
+    	 System.out.println(query);
+         try(Connection connection = dataSource.getConnection()){        	 
+             Statement stmt = connection.createStatement();
+             stmt.executeUpdate(query);
+         }catch (Exception e){
+             System.out.println(e.getMessage());
+             throw new RuntimeException(e);
+         }
 
     }
 
     @Override
     public void delete(User o) {
-
+    	String query = "DELETE FROM users WHERE id='"+o.getId()+"';";
+        try(Connection connection = dataSource.getConnection()){
+            Statement stmt = connection.createStatement();
+            stmt.execute(query);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
