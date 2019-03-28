@@ -99,11 +99,11 @@ public class UserPostgresRepository implements IUserRepository {
 
     @Override
     public void update(User entity) {    	
-    	 String query = "update users SET name='"+entity.getName()+"' Where id='"+entity.getId()+"';";
+    	 String query = "UPDATE users SET name='"+entity.getName()+"'WHERE id='"+entity.getId()+"';";
     	 System.out.println(query);
          try(Connection connection = dataSource.getConnection()){        	 
              Statement stmt = connection.createStatement();
-             stmt.executeUpdate(query);
+             int rs=stmt.executeUpdate(query);
          }catch (Exception e){
              System.out.println(e.getMessage());
              throw new RuntimeException(e);
@@ -114,9 +114,10 @@ public class UserPostgresRepository implements IUserRepository {
     @Override
     public void delete(User o) {
     	String query = "DELETE FROM users WHERE id='"+o.getId()+"';";
+    	System.out.println(query);
         try(Connection connection = dataSource.getConnection()){
             Statement stmt = connection.createStatement();
-            stmt.execute(query);
+            stmt.executeUpdate(query);
         }catch (Exception e){
             System.out.println(e.getMessage());
             throw new RuntimeException(e);

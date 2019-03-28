@@ -65,7 +65,6 @@ public class UserServices implements IUserServices{
 
 	@Override
 	public User delete(UUID id) {
-		System.out.println("hola");
 		if(null == id)
             throw new RuntimeException("Id invalid");
         else if(userRepository.find(id) == null)
