@@ -51,9 +51,9 @@ public class CarController {
 
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.DELETE, consumes = {MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<?> deleteCar(@RequestBody UUID id){
+	public ResponseEntity<?> deleteCar(@RequestBody UniqueId id){
 		try{
-			return new ResponseEntity<>(carServices.delete(id), HttpStatus.CREATED);
+			return new ResponseEntity<>(carServices.remove(id.getId()), HttpStatus.CREATED);
 		}catch(Exception e){
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
 		}    
