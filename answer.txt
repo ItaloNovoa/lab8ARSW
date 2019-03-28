@@ -1,0 +1,7 @@
+What the application do?
+- despliega una pagina de heroku en la cual podemos realizar un tutorial de inicio para aprender a desplegar nuestra propia aplicacion 
+Describe the REST services exposed by the application.
+-Rest controller car y rest controller user , el servicio car posee 4 metodos(obtener crear elminar y actualizar) sin implementacion y el 
+servicio users posee los mismos 4 metodos pero se encuentran implementado los metodos crear y obtener usuario.
+For what purpose is the Procfile plaintext file?  
+-Es un mecanismo que declara que comandos son ejecutados por el dynamo de la aplicacion en la plataforma de heroku.
