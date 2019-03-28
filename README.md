@@ -4,7 +4,7 @@ A barebones Java app, which can easily be deployed to Heroku.
 
 This application supports the [Getting Started with Java on Heroku](https://devcenter.heroku.com/articles/getting-started-with-java) article - check it out.
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://agile-lowlands-65701.herokuapp.com/cars)
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 ## Running Locally
 
@@ -38,3 +38,6 @@ Use the following postman collection to test the REST API.
 For more information about using Java on Heroku, see these Dev Center articles:
 
 - [Java on Heroku](https://devcenter.heroku.com/categories/java)
+
+## Heroku Link
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://agile-lowlands-65701.herokuapp.com/cars)
